@@ -1,0 +1,32 @@
+// إجمالي المبيعات
+Sales = SUM(Sales_Data[Sales])
+
+// مبيعات السنة السابقة
+Sales PY = CALCULATE([Sales], SAMEPERIODLASTYEAR(DateTable[Date]))
+
+// الفرق بين المبيعات الحالية ومبيعات السنة السابقة
+Sales vs PY = [Sales] - [Sales PY]
+
+// نسبة الزيادة أو النقصان في المبيعات سنة بعد سنة (YOY%)
+Sales vs py % = DIVIDE([Sales vs PY],[Sales],0)
+
+// المنتجات المباعة
+Products Sold = SUM(Sales_Data[Order Quantity])
+
+// الربح
+Profit = SUM(Sales_Data[Profit]) 
+
+// ربح السنة السابقة
+Profit LY = CALCULATE([Profit], SAMEPERIODLASTYEAR(DateTable[Date]))
+
+// الفرق بين الربح الحالي وربح السنة السابقة
+Profit Vs LY = [Profit]- [Profit LY]
+
+// نسبة الربح الحالية مقارنة بالسنة السابقة
+Profit vs LY % = [Profit Vs LY]/[Profit]
+
+// هامش الربح
+Profit Margin = DIVIDE([Profit],[Sales],0)
+
+// إجمالي التكلفة
+Total Cost = SUM(Sales_Data[Total Cost])
